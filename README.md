@@ -9,3 +9,8 @@ docker run -it -e PORT=4000 -p 4000:4000 example-nodejs-use-
 docker exec -it d5721a2634f2 bash
 
 docker exec -it frosty_chaum bash
+
+
+
+# 👇 Multi-stage builds
+https://docs.docker.com/build/building/multi-stage/
