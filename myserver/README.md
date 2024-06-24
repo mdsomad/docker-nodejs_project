@@ -1,4 +1,4 @@
-## build & Run
+## Docker Image build & Run
 
 ```sh
 docker build -t somadev-server .

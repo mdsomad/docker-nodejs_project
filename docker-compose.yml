@@ -33,3 +33,13 @@ services:
       - nodeapp
     environment:
       - PORT=5000
+
+
+
+  #?👇Yah hai service 4
+  client:
+    image: nextjs
+    ports:
+      - "3000:3000" #? 👈 Port expose
+    depends_on:
+      - authservice

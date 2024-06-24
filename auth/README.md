@@ -1,4 +1,4 @@
-## build & Run
+## Docker Image build & Run
 
 - First build imges
 ```sh
