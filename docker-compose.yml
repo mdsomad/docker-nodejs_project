@@ -1,16 +1,35 @@
 version: "3.8"
-
+name: dockerdev
 services:
-  postgres:
-    image: postgres # hub.docker.com
-    ports:
-      - "5432:5432"
+  #?👇Yah hai service 1
+  nodeapp:
+    image: somadev-server
+    container_name: samplewala-server #? 👈 Is tarike se container ka name define kar sakte hain
     environment:
-      POSTGRES_USER: postgres
-      POSTGRES_DB: review
-      POSTGRES_PASSWORD: password
+      - PORT=4000 #? 👈 Yah Ek Array hai
+      - MONGO_URL=mongodb://admin:password@mongodb #? 👈 serviceName Add mongodb url
+    ports: #? 👇 Yah Bhi Ek Array hai
+      - "4000:4000" #? 👈 Port expose
+    depends_on: #? 👈 yah MongoDB ke upar dependent Hai Pahle MongoDB start hoga Uske bad hi yah start hoga
+      - mongodb #? 👈 serviceName
 
-  redis:
-    image: redis
+  #?👇Yah hai service 2
+  mongodb:
+    image: mongo
+    container_name: dockerdevDB
     ports:
-      - "6379:6379"
+      - "27017:27017" #? 👈 Port expose
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: admin
+      MONGO_INITDB_ROOT_PASSWORD: password
+
+  #?👇Yah hai service 3
+  authservice:
+    image: auth
+    container_name: samplewala-authservice
+    ports:
+      - "5000:5000" #? 👈 Port expose
+    depends_on:
+      - nodeapp
+    environment:
+      - PORT=5000
