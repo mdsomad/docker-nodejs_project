@@ -1,8 +1,31 @@
+#* 👇 Development use
 FROM node:20
 WORKDIR /app
 #? 👇 * 👈 Dene Ka Matlab Hai package naam ka file jitne bhi Sab Ko copy kar lega
 COPY package*.json ./     
 RUN npm install
 COPY . .
-RUN npm run build
-ENTRYPOINT [ "npm", "start" ]
+CMD [ "npm","run","dev" ]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# ! 👇 currently not used (production use)
+# FROM node:20
+# WORKDIR /app
+# #? 👇 * 👈 Dene Ka Matlab Hai package naam ka file jitne bhi Sab Ko copy kar lega
+# COPY package*.json ./     
+# RUN npm install
+# COPY . .
+# RUN npm run build
+# ENTRYPOINT [ "npm", "start" ]

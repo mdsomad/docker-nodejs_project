@@ -3,7 +3,9 @@ name: dockerdev
 services:
   #?👇Yah hai service 1
   nodeapp:
-    image: somadev-server
+    build:
+      context: ./myserver #? 👈 Is tarike se automatically image build kar leta hai manually image build karne ki jarurat nahin padta
+      dockerfile: Dockerfile
     container_name: samplewala-server #? 👈 Is tarike se container ka name define kar sakte hain
     environment:
       - PORT=4000 #? 👈 Yah Ek Array hai
@@ -22,10 +24,16 @@ services:
     environment:
       MONGO_INITDB_ROOT_USERNAME: admin
       MONGO_INITDB_ROOT_PASSWORD: password
+    # volumes:
+    #   - ./data:data/db   #? 👈 Is Tarike se basically Jahan per docker compose file Hai vahin per folder Banakar data store kar deta hai MongoDB ka
+    volumes:
+      - dockerdev-data:data/db #? 👈 Is tarike se niche Banaya Hua custom volume ko assign kar sakte hain
 
   #?👇Yah hai service 3
   authservice:
-    image: auth
+    build:
+      context: ./auth #? 👈 Is tarike se automatically image build kar leta hai manually image build karne ki jarurat nahin padta
+      dockerfile: Dockerfile
     container_name: samplewala-authservice
     ports:
       - "5000:5000" #? 👈 Port expose
@@ -34,12 +42,30 @@ services:
     environment:
       - PORT=5000
 
-
-
   #?👇Yah hai service 4
   client:
-    image: nextjs
+    build:
+      context: ./client #? 👈 Is tarike se automatically image build kar leta hai manually image build karne ki jarurat nahin padta
+      dockerfile: Dockerfile
     ports:
       - "3000:3000" #? 👈 Port expose
+    environment:
+      - SERVER_URL=http://nodeapp:4000
     depends_on:
       - authservice
+    develop:
+      watch:
+        - path: ./client/package.json
+          action: rebuild
+        - path: ./client/package-lock.json
+          action: rebuild
+        - path: ./client
+          target: /app
+          action: sync
+    # ! 👇 Is tarike se bhi use kar sakte hain development ke liye lekin yah Tarika Sahi Nahin Hai use karne ke liye (upar wala watch Mod hi Tarika badhiya hai use karne ke liye development)
+    # volumes:
+    #   - ./client:/app
+
+  volumes:
+    dockerdev-data:
+      driver: local
