@@ -1,41 +1,5 @@
 
 
-## Docker Image build & Run
-
-- First build imges
-```sh
-docker build -t nestjs .
-```
-
-
-- 👇 Run Command Check Images
-```sh
-docker images
-```
-
-
-
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-
-
-
 
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
