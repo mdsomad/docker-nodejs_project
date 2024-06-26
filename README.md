@@ -37,3 +37,9 @@ docker compose dwon
 ```sh
 docker run -d -p 27020:27017 -e MONGO_INITDB_ROOT_USERNAME=admin -e MONGO_INITDB_ROOT_PASSWORD=password --name mongodbDatabase -v customvolumecreate:/data/db mongo
 ```
+<br/>
+
+![Screenshot 2024-06-24 154123](https://github.com/mdsomad/docker-nodejs_project/assets/103892160/6448d873-fac6-44d4-9512-41ddfe0387ea)
+
+
+
