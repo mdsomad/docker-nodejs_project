@@ -24,3 +24,7 @@ docker compose up -d
 ```sh
 docker compose dwon
 ```
+
+
+![Screenshot 2024-06-24 121716](https://github.com/mdsomad/docker-nodejs_project/assets/103892160/da70e431-63f9-4e2b-9a6e-6d5ae6c7b100)
+
